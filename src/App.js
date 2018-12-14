@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=8ae4612a456a4220952d4dbd49878716`)
+    fetch(`https://newsapi.org/v2/everything?q=software&apiKey=8ae4612a456a4220952d4dbd49878716`)
       .then(res => res.json())
       .then(data => this.setState({data}))    
   }
