@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  state = {
+    searchTerm: '',
+    isSubmitted: '',
+    data: []
+  }
+
+  componentDidMount(){
+    fetch(`https://newsapi.org/v2/everything?q=bitcoin&apiKey=8ae4612a456a4220952d4dbd49878716`)
+      .then(res => res.json())
+      .then(data => this.setState({data}))    
+  }
+
+  handleChange = e => {
+    this.setState({searchTerm: e.target.value})
+  }
+  
+  fetchData = () => {
+    fetch(`https://newsapi.org/v2/everything?q=${this.state.searchTerm}&apiKey=8ae4612a456a4220952d4dbd49878716`)
+      .then(res => res.json())
+      .then(data => this.setState({data}))
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1>The news site</h1>
+        <label htmlFor="searchTerm">Search</label>
+        <input onChange={this.handleChange} value={this.state.searchTerm} name="searchTerm" id="searchTerm" type="text" placeholder="Search Here..." />
+        <button type="submit" onClick={this.fetchData}>Submit</button>
+        {console.log(this.state.data.articles)}
       </div>
     );
   }
