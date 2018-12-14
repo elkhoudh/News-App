@@ -12,8 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import LinkIcon from '@material-ui/icons/Link';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
@@ -85,7 +84,7 @@ class RecipeReviewCard extends React.Component {
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
           <a href={url}><IconButton aria-label="Share">
-            <ShareIcon />
+            <LinkIcon />
           </IconButton></a>
           <IconButton
             className={classnames(classes.expand, {
