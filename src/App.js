@@ -35,7 +35,8 @@ class App extends Component {
     this.setState({searchTerm: e.target.value})
   }
   
-  fetchData = () => {
+  fetchData = (e) => {
+    e.preventDefault();
     if(this.state.searchTerm.length === 0){
       alert('Please Enter Search Term')
     } else {
@@ -55,8 +56,10 @@ class App extends Component {
         <Grid container spacing={24}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-          <input onChange={this.handleChange} value={this.state.searchTerm} name="searchTerm" id="searchTerm" type="text" placeholder="Search Here..." required/>
+          <form onSubmit={this.fetchData}>
+          <input onChange={this.handleChange}  value={this.state.searchTerm} name="searchTerm" id="searchTerm" type="text" placeholder="Search Here..." required/>
           <button type="submit" onClick={this.fetchData}>Submit</button>
+          </form>
           </Paper>
         </Grid>
       {this.state.data.length === 0 ? console.log('THIS SHIT IS EMPTY') : this.state.data.articles.map(article => 
