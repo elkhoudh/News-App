@@ -61,7 +61,7 @@ class RecipeReviewCard extends React.Component {
         <CardHeader
           avatar={
             <Avatar aria-label="Recipe" className={classes.avatar}>
-              {author[0].toUpperCase()}
+              {'A' || author[0].toUpperCase()}
             </Avatar>
           }
           action={
