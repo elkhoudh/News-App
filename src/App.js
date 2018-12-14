@@ -1,5 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
+import NavBar from './components/NavBar';
+import Card from './components/Card';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+});
 
 class App extends Component {
   state = {
@@ -19,21 +36,52 @@ class App extends Component {
   }
   
   fetchData = () => {
-    fetch(`https://newsapi.org/v2/everything?q=${this.state.searchTerm}&apiKey=8ae4612a456a4220952d4dbd49878716`)
+    if(this.state.searchTerm.length === 0){
+      alert('Please Enter Search Term')
+    } else {
+      fetch(`https://newsapi.org/v2/everything?q=${this.state.searchTerm}&apiKey=8ae4612a456a4220952d4dbd49878716`)
       .then(res => res.json())
       .then(data => this.setState({data}))
+    }
+    
   }
+
   render() {
+    const { classes } = this.props;
     return (
       <div>
-        <h1>The news site</h1>
-        <label htmlFor="searchTerm">Search</label>
-        <input onChange={this.handleChange} value={this.state.searchTerm} name="searchTerm" id="searchTerm" type="text" placeholder="Search Here..." />
-        <button type="submit" onClick={this.fetchData}>Submit</button>
-        {console.log(this.state.data.articles)}
-      </div>
+        <NavBar />   
+        <div className={classes.root}>
+        <Grid container spacing={24}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+          <input onChange={this.handleChange} value={this.state.searchTerm} name="searchTerm" id="searchTerm" type="text" placeholder="Search Here..." required/>
+          <button type="submit" onClick={this.fetchData}>Submit</button>
+          </Paper>
+        </Grid>
+      {this.state.data.length === 0 ? console.log('THIS SHIT IS EMPTY') : this.state.data.articles.map(article => 
+        <Grid item xs={3}>
+          <Card 
+            key={article.url} 
+            author={article.author} 
+            publishedAt={article.publishedAt} 
+            urlToImage={article.urlToImage} 
+            title={article.title} 
+            description={article.description} 
+            content={article.content} 
+            url={article.url}
+          />
+        </Grid>          
+          )}
+      </Grid>
+    </div>
+
+</div>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+}
+export default withStyles(styles)(App);
