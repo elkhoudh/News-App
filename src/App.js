@@ -50,7 +50,7 @@ class App extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div class="app">
         <NavBar />   
         <div className={classes.root}>
         <Grid container spacing={24}>

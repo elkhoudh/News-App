@@ -12,3 +12,8 @@ button {
 input {
   padding: 10px 40px;
 }
+
+.app {
+  text-align: center;
+  margin: 0 20px;
+}
