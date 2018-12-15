@@ -63,7 +63,7 @@ class App extends Component {
           </Paper>
         </Grid>
       {this.state.data.length === 0 ? console.log('THIS SHIT IS EMPTY') : this.state.data.articles.map(article => 
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <Card 
             key={article.url} 
             author={article.author} 
