@@ -20,6 +20,9 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  label: {
+    padding: "0 10px"
+  }
 });
 
 class App extends Component {
@@ -63,7 +66,7 @@ class App extends Component {
           <form onSubmit={this.fetchData}>
           <input onChange={this.handleChange}  value={this.state.searchTerm} name="searchTerm" id="searchTerm" type="text" placeholder="Search Here..." required/>
           
-          <InputLabel htmlFor="results">Results</InputLabel>
+          <InputLabel className={classes.label} htmlFor="results">Results</InputLabel>
           <Select
             value={this.state.results}
             onChange={this.handleChange}
@@ -71,6 +74,7 @@ class App extends Component {
               name: 'results',
               id: 'results',
             }}
+            className={classes.label}
           >
           <MenuItem value={20}>
               <em>20</em>
