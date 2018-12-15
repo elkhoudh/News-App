@@ -44,6 +44,10 @@ const styles = theme => ({
   avatar: {
     backgroundColor: red[500],
   },
+  description: {
+      maxHeight: 100,
+      overflow: "hidden"
+  }
 });
 
 class RecipeReviewCard extends React.Component {
@@ -78,7 +82,7 @@ class RecipeReviewCard extends React.Component {
           title={title}
         />
         <CardContent>
-          <Typography component="p">
+          <Typography className={classes.description} component="p">
             {description}
           </Typography>
         </CardContent>
