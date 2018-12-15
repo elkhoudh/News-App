@@ -65,7 +65,7 @@ class App extends Component {
           <Paper className={classes.paper}>
           <form onSubmit={this.fetchData}>
           <input onChange={this.handleChange}  value={this.state.searchTerm} name="searchTerm" id="searchTerm" type="text" placeholder="Search Here..." required/>
-          
+          <br />
           <InputLabel className={classes.label} htmlFor="results">Results</InputLabel>
           <Select
             value={this.state.results}
